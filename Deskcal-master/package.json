@@ -2,7 +2,7 @@
     "name": "Deskcal",
     "productName": "Deskcal",
     "desktopName": "Deskcal",
-    "version": "1.0.1.6",
+    "version": "1.0.6",
     "description": "An unofficial cross-platform desktop Google Calendar application",
     "main": "app.js",
     "repository": "https://github.com/cognophile/Deskcal",
@@ -24,12 +24,11 @@
         "build:windows": "npx electron-packager . --overwrite --asar --out=dist --ignore='^media$' --prune --platform=win32 --arch=ia32 --icon=resources/icon.ico --version-string.ProductName=$npm_package_productName --app-version=$npm_package_version && cd dist/Deskcal-win32-ia32 && zip -ryq9 ../Deskcal-windows-${npm_package_version}.zip *"
     },
     "devDependencies": {
-        "electron": "^23.1.4",
-        "electron-builder": "^23.6.0",
-        "electron-packager": "^17.1.1"
+        "electron": "^15.5.5",
+        "electron-builder": "^22.4.1",
+        "electron-packager": "^14.2.1"
     },
     "dependencies": {
-        "about-window": "^1.15.2",
-        "jsdom": "^21.1.1"
+        "about-window": "^1.15.2"
     }
 }

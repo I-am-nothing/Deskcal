@@ -2,7 +2,7 @@
 
 const path = require('path');
 const filesystem = require('fs');
-const { app, BrowserWindow, Menu, screen } = require('electron');
+const { app, BrowserWindow, Menu } = require('electron');
 const openAboutWindow = require('about-window').default;
 
 let window
@@ -17,11 +17,6 @@ function loadService() {
     window.loadURL('https://calendar.google.com', {
         userAgent: 'Chrome'
     });
-
-    window.setOpacity(0.75);
-
-    const { width, height } = screen.getPrimaryDisplay().workAreaSize;
-    window.setPosition(Math.ceil(width / 2 + width / 16), Math.ceil(height / 16));
 }
 
 /**
@@ -86,16 +81,11 @@ function initialiseWindow() {
         title: app.getName(),
         minWidth: 800,
         minHeight: 600,
-        width: 1000,
-        height: 600,
+        width: 1600,
+        height: 1000,
         resizable: true,
-        transparent: true,
-        autoHideMenuBar: true,
-        minimizable: false,
-        closable: false,
-        movable: false,
-        skipTaskbar: true,
-        titleBarStyle: "hidden",
+        transparent: false,
+        autoHideMenuBar: true, 
         icon: process.platform === 'linux' && path.join(__dirname, 'resources', 'icon.png'),
         webPreferences: {
             nodeIntegration: true
@@ -127,8 +117,7 @@ app.on('ready', function () {
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') {
-    initialiseWindow();
-    window.show();
+    app.quit()
   }
 })
 
@@ -136,9 +125,4 @@ app.on('activate', function () {
   if (window === null) {
     initialiseWindow()
   }
-})
-
-app.on('browser-window-blur', () => {
-    window.setAlwaysOnTop(true, 'normal')
-    window.setAlwaysOnTop(false)
 })
